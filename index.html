@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>阿部 若奈 — Portfolio</title>
+  <meta name="description" content="阿部若奈のポートフォリオ。DTPオペレーター、資料作成デザイナー、3DCGモデラー。">
+  <style>
+    :root {
+      --bg: #f5f0e6;
+      --ink: #1a1a1a;
+      --muted: #6b6358;
+      --border: #ccc4b4;
+      --tag-bg: #e8e2d6;
+      --rule: 2px solid var(--ink);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, 'Noto Serif JP', 'Yu Mincho', YuMincho,
+        'Hiragino Mincho Pro', 'MS Mincho', serif;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    /* ── top bar ── */
+    .topbar {
+      background: var(--ink);
+      color: var(--bg);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-align: center;
+      padding: 0.45rem 1rem;
+      text-transform: uppercase;
+    }
+
+    /* ── container ── */
+    .wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── header ── */
+    header {
+      border-bottom: var(--rule);
+      padding: 3rem 0 2.5rem;
+    }
+
+    .header-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+
+    .reading {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.85rem;
+      color: var(--muted);
+      letter-spacing: 0.25em;
+      margin-top: 0.3rem;
+    }
+
+    .roles {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+
+    .role {
+      background: var(--ink);
+      color: var(--bg);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      padding: 0.15rem 0.55rem;
+    }
+
+    /* ── contact ── */
+    .contact {
+      margin-top: 1.8rem;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.84rem;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .c-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      min-width: 3.2rem;
+    }
+
+    a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+    }
+
+    a:hover {
+      background: var(--ink);
+      color: var(--bg);
+      text-decoration: none;
+      outline: none;
+    }
+
+    /* ── avatar ── */
+    .avatar {
+      width: 88px;
+      height: 88px;
+      border: 2px solid var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 2.2rem;
+      font-weight: 200;
+      color: var(--muted);
+      flex-shrink: 0;
+      /* dither-like halftone via repeating gradient — no image needed */
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 2px,
+          rgba(26,26,26,0.04) 2px,
+          rgba(26,26,26,0.04) 4px
+        );
+    }
+
+    /* ── sections ── */
+    section {
+      padding: 2.8rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-child { border-bottom: none; }
+
+    h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.8rem;
+    }
+
+    /* ── two-column (education + skills) ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .two-col section:first-child {
+      border-right: 1px solid var(--border);
+      padding-right: 2.5rem;
+    }
+
+    .two-col section:last-child {
+      padding-left: 2.5rem;
+    }
+
+    /* ── timeline ── */
+    .timeline { position: relative; }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 5.2rem;
+      top: 0.6rem;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 5.5rem 1fr;
+      gap: 0;
+      margin-bottom: 1.6rem;
+      position: relative;
+    }
+
+    .tl-item::after {
+      content: '';
+      position: absolute;
+      left: calc(5.2rem - 3px);
+      top: 0.52rem;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--ink);
+    }
+
+    .tl-year {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      text-align: right;
+      padding-right: 1.4rem;
+      padding-top: 0.18rem;
+      white-space: nowrap;
+    }
+
+    .tl-body h3 {
+      font-size: 0.97rem;
+      font-weight: 600;
+    }
+
+    .tl-sub {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      margin-top: 0.35rem;
+    }
+
+    .tag {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.68rem;
+      background: var(--tag-bg);
+      color: var(--muted);
+      padding: 0.1rem 0.45rem;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── education ── */
+    .edu-item {
+      display: grid;
+      grid-template-columns: 2.8rem 1fr;
+      gap: 0.7rem;
+      margin-bottom: 1.4rem;
+      align-items: start;
+    }
+
+    .edu-year {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--muted);
+      padding-top: 0.12rem;
+    }
+
+    .edu-body h3 {
+      font-size: 0.94rem;
+      font-weight: 600;
+    }
+
+    .edu-body p {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ── skills ── */
+    .skill-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.65rem;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.84rem;
+    }
+
+    .dots {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+    }
+
+    .dot-on  { color: var(--ink); }
+    .dot-off { color: var(--border); }
+
+    /* ── footer ── */
+    footer {
+      padding: 2rem 0 2.5rem;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.74rem;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    .badge {
+      display: inline-block;
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.7rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.6rem;
+    }
+
+    /* ── responsive ── */
+    @media (max-width: 600px) {
+      h1 { font-size: 2.1rem; }
+      .header-inner { grid-template-columns: 1fr; }
+      .avatar { display: none; }
+
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+      .two-col section:first-child {
+        border-right: none;
+        padding-right: 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .two-col section:last-child {
+        padding-left: 0;
+      }
+
+      .timeline::before { left: 4.6rem; }
+      .tl-item { grid-template-columns: 5rem 1fr; }
+      .tl-item::after { left: calc(4.6rem - 3px); }
+      .tl-year { padding-right: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  ⬡ &nbsp;外部リソースなし &nbsp;·&nbsp; システムフォントのみ &nbsp;·&nbsp; 推定ページサイズ: 9KB
+</div>
+
+<div class="wrap">
+
+  <header>
+    <div class="header-inner">
+      <div>
+        <h1>阿部 若奈</h1>
+        <p class="reading">あべ わかな</p>
+        <div class="roles">
+          <span class="role">DTPオペレーター</span>
+          <span class="role">資料作成デザイナー</span>
+          <span class="role">3DCGモデラー</span>
+        </div>
+
+        <div class="contact">
+          <div class="contact-row">
+            <span class="c-label">Web</span>
+            <a href="https://sites.google.com/view/wakanaabe/home"
+               target="_blank" rel="noopener">実務ポートフォリオ ↗</a>
+          </div>
+          <div class="contact-row">
+            <span class="c-label">Web</span>
+            <a href="https://www.behance.net/114f2d32"
+               target="_blank" rel="noopener">個人制作 — Behance ↗</a>
+          </div>
+          <div class="contact-row">
+            <span class="c-label">Mail</span>
+            <a href="mailto:wcn.aby@gmail.com">wcn.aby@gmail.com</a>
+          </div>
+          <div class="contact-row">
+            <span class="c-label">Tel</span>
+            <span>080-6390-0765</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="avatar" aria-hidden="true">若</div>
+    </div>
+  </header>
+
+  <main>
+
+    <section>
+      <h2>職歴</h2>
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-year">2026 –</div>
+          <div class="tl-body">
+            <h3>資料作成デザイナー・3DCGモデラー</h3>
+            <div class="tags">
+              <span class="tag">#3dcg</span>
+              <span class="tag">#資料デザイン</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-year">〜</div>
+          <div class="tl-body">
+            <h3>スタートアップ 一人デザイナー</h3>
+            <div class="tags">
+              <span class="tag">#UI</span>
+              <span class="tag">#WEB</span>
+              <span class="tag">#LINE api</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-year">〜</div>
+          <div class="tl-body">
+            <h3>文化財動画制作</h3>
+            <div class="tags">
+              <span class="tag">#動画</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-year">2020–21</div>
+          <div class="tl-body">
+            <h3>デンマーク留学</h3>
+            <p class="tl-sub">Nordfyns Højskole</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-year">〜</div>
+          <div class="tl-body">
+            <h3>長岡市国際交流センター</h3>
+            <p class="tl-sub">広報デザイン担当</p>
+            <div class="tags">
+              <span class="tag">#ポスター</span>
+              <span class="tag">#冊子</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-year">〜</div>
+          <div class="tl-body">
+            <h3>アルバイト・時々デザイン</h3>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-year">2016</div>
+          <div class="tl-body">
+            <h3>DTPオペレーター</h3>
+            <div class="tags">
+              <span class="tag">#DTP</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="two-col">
+
+      <section>
+        <h2>学歴</h2>
+
+        <div class="edu-item">
+          <div class="edu-year">2020</div>
+          <div class="edu-body">
+            <h3>Nordfyns Højskole</h3>
+            <p>デンマーク</p>
+          </div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-year">2014</div>
+          <div class="edu-body">
+            <h3>長岡造形大学</h3>
+            <p>建築・環境デザイン学科<br>インテリアデザインコース 修了</p>
+          </div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-year">2010</div>
+          <div class="edu-body">
+            <h3>長岡明徳高校 卒業</h3>
+          </div>
+        </div>
+
+      </section>
+
+      <section>
+        <h2>デザインスキル</h2>
+
+        <div class="skill-row">
+          <span>Adobe Illustrator</span>
+          <span class="dots">
+            <span class="dot-on">●●●●</span><span class="dot-off">○</span>
+          </span>
+        </div>
+        <div class="skill-row">
+          <span>Adobe Photoshop</span>
+          <span class="dots">
+            <span class="dot-on">●●●</span><span class="dot-off">○○</span>
+          </span>
+        </div>
+        <div class="skill-row">
+          <span>Adobe InDesign</span>
+          <span class="dots">
+            <span class="dot-on">●●●●</span><span class="dot-off">○</span>
+          </span>
+        </div>
+        <div class="skill-row">
+          <span>Figma</span>
+          <span class="dots">
+            <span class="dot-on">●●</span><span class="dot-off">○○○</span>
+          </span>
+        </div>
+        <div class="skill-row">
+          <span>Canva</span>
+          <span class="dots">
+            <span class="dot-on">●●●●●</span>
+          </span>
+        </div>
+        <div class="skill-row">
+          <span>Google Workspace</span>
+          <span class="dots">
+            <span class="dot-on">●●●●●</span>
+          </span>
+        </div>
+        <div class="skill-row">
+          <span>Office</span>
+          <span class="dots">
+            <span class="dot-on">●●●●●</span>
+          </span>
+        </div>
+        <div class="skill-row">
+          <span>Cinema4D</span>
+          <span class="dots">
+            <span class="dot-on">●●</span><span class="dot-off">○○○</span>
+          </span>
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="badge">page size: ~9KB &nbsp;·&nbsp; no fonts loaded &nbsp;·&nbsp; no tracking</div><br>
+    システムフォントのみを使用。外部リソース・トラッキング一切なし。<br>
+    &copy; 2026 阿部 若奈
+  </footer>
+
+</div>
+</body>
+</html>
