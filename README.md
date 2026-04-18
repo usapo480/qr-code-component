@@ -1,2 +1,3 @@
-# qr-code-component
-AI helped me a lot.
+# 阿部 若奈 — Portfolio
+
+https://usapo480.github.io/qr-code-component/
